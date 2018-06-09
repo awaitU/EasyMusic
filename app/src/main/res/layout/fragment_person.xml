@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainfagment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transport"
+    android:orientation="vertical">
+
+    <!--<TextView-->
+        <!--android:layout_width="350dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_marginTop="35dp"-->
+        <!--android:text="@string/loginlogotext"-->
+        <!--android:textColor="@color/black"-->
+        <!--android:textSize="40sp"-->
+        <!--android:textStyle="normal" />-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:src="@mipmap/logo"/>
+
+
+
+        <EditText
+            android:id="@+id/phonenumber"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:hint="@string/edittextnumber"
+            android:drawableLeft="@mipmap/user"
+            android:inputType="phone" />
+
+        <EditText
+            android:id="@+id/inputpassword"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:hint="@string/edittextpassword"
+            android:drawableLeft="@mipmap/lock"
+            android:inputType="textPassword" />
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp">
+
+
+        <TextView
+            android:id="@+id/forgivepws"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="left"
+            android:text="@string/forgivepws"
+            android:textColor="@color/lightblue"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/forgivepws"
+            android:layout_alignBottom="@+id/forgivepws"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:text="@string/register"
+            android:textColor="@color/lightblue"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/loginbuttontext"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/circleshapestyle"
+        android:bottomLeftRadius="50dp"
+        android:bottomRightRadius="50dp"
+        android:text="@string/loginbuttontext"
+        android:textColor="@color/transport"
+        android:topLeftRadius="50dp"
+        android:topRightRadius="50dp" />
+</LinearLayout>

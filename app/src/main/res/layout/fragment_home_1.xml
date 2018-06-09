@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/transport">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/adv_pager"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="top">
+    </android.support.v4.view.ViewPager>
+
+
+    <LinearLayout
+        android:id="@+id/viewGroup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-25px"
+        android:gravity="right"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:horizontalSpacing="30dp"
+        android:stretchMode="columnWidth"
+        android:numColumns="4"
+        android:gravity="center" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nowtimemusic"
+        android:textColor="@color/lightblue"
+        android:layout_marginTop="20dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/zhuanji4"
+            android:layout_weight="1"
+            android:layout_gravity="left"
+            />
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/zhuanji4"
+            android:layout_weight="1"
+            android:layout_gravity="center"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/zhuanji4"
+            android:layout_weight="1"
+            android:layout_gravity="right"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:id="@+id/test1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/zhuanji1"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+
+            />
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/zhuanji2"
+            android:layout_weight="1"
+            android:layout_gravity="center"/>
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/zhuanji3"
+            android:layout_weight="1"
+            android:layout_gravity="right"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

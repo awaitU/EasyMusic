@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transport"
+    android:orientation="vertical">
+
+
+
+
+        <TextView
+            android:id="@+id/tab_1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="@string/resetpwd"
+            android:textColor="@color/transport"
+            android:background="@color/lightblue"
+            android:textSize="15sp" />
+
+
+
+    <EditText
+        android:id="@+id/inputphonenumber"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:drawableLeft="@mipmap/user"
+        android:hint="@string/edittextnumber" />
+
+    <Button
+        android:id="@+id/nextsteps"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/circleshapestyle"
+        android:text="@string/nextstep"
+        android:textColor="@color/transport" />
+
+
+</LinearLayout>
