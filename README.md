@@ -1,5 +1,5 @@
 # EasyMusic
-just a simple Music player，but  I think you can learn more from it.\<br> 
+just a simple Music player，but  I think you can learn more from it.<br> 
 ## 功能展示：<br> 
 
 ### 引导页面：<br> 
