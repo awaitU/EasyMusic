@@ -15,5 +15,7 @@ public class Constants {
 	public static String ACTION_PRV = "music_prv";
 	//seekbar手动控制
 	public static String ACTION_SEEK ="music_seek";
+	//停止通知栏
+	public static String DOWN_NOTIFY ="down_notify";
 
 }

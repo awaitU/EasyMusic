@@ -155,7 +155,6 @@ public class MusicActivity extends Activity implements OnClickListener,
 				} else if ((Myapp.state % 3) == 0) {
 					position = Myapp.position;
 				}
-				Log.i("---position", "" + position);
 				setMusicBg(position);
 				Message message = Message.obtain();
 				message.obj = mp3Infos.get(position);
@@ -356,7 +355,6 @@ public class MusicActivity extends Activity implements OnClickListener,
 	public void onBackPressed() {
 		super.onBackPressed();
 		isTrue = false;
-		finish();
 	}
 	public void onDestroy() {
 		super.onDestroy();

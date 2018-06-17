@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,6 @@ import com.awaitu.easymusic.bean.Mp3Info;
 import com.awaitu.easymusic.bean.Myapp;
 import com.awaitu.easymusic.utils.Constants;
 import com.awaitu.easymusic.utils.MediaUtil;
-import com.awaitu.easymusic.view.MainActivity;
 import com.awaitu.easymusic.view.MusicActivity;
 
 import java.util.List;
@@ -81,6 +81,25 @@ public class ListmusicFragment extends Fragment implements OnItemClickListener, 
         btm_state = (ImageView) view.findViewById(R.id.player_state);
         btm_next = (ImageView) view.findViewById(R.id.play_next);
         manager = (NotificationManager) getActivity().getSystemService(NOTIFICATION_SERVICE);
+        remoteViews = new RemoteViews(getActivity().getPackageName(),
+                R.layout.customnotice);
+        if (Myapp.isPlay) {
+            Mp3Info info = infos.get(position);
+            Bitmap bitmap = MediaUtil.getArtwork(getActivity(),
+                    info.getId(), info.getAlbumId(), true, false);
+            btm_album.setImageBitmap(bitmap);
+            btm_artist.setText(info.getArtist());
+            btm_title.setText(info.getTitle());
+            btm_state.setImageResource(R.mipmap.player_btn_radio_pause_normal);
+        }else{
+            Mp3Info info = infos.get(position);
+            Bitmap bitmap = MediaUtil.getArtwork(getActivity(),
+                    info.getId(), info.getAlbumId(), true, false);
+            btm_album.setImageBitmap(bitmap);
+            btm_artist.setText(info.getArtist());
+            btm_title.setText(info.getTitle());
+            btm_state.setImageResource(R.mipmap.player_btn_radio_play_normal);
+        }
     }
 
     private void setOnclickListener() {
@@ -108,16 +127,16 @@ public class ListmusicFragment extends Fragment implements OnItemClickListener, 
             btm_album.setImageBitmap(bitmap);
             btm_artist.setText(info.getArtist());
             btm_title.setText(info.getTitle());
-            btm_state.setImageResource(R.mipmap.player_btn_radio_pause_normal);
+
             // 设置通知栏的图片文字
-            remoteViews = new RemoteViews(getActivity().getPackageName(),
-                    R.layout.customnotice);
             remoteViews.setImageViewBitmap(R.id.widget_album, bitmap);
             remoteViews.setTextViewText(R.id.widget_title, info.getTitle());
             remoteViews.setTextViewText(R.id.widget_artist, info.getArtist());
             if (Myapp.isPlay) {
+                btm_state.setImageResource(R.mipmap.player_btn_radio_pause_normal);
                 remoteViews.setImageViewResource(R.id.widget_play, R.drawable.widget_btn_pause_normal);
             } else {
+                btm_state.setImageResource(R.mipmap.player_btn_radio_play_normal);
                 remoteViews.setImageViewResource(R.id.widget_play, R.drawable.widget_btn_play_normal);
             }
             setNotification();
@@ -154,6 +173,7 @@ public class ListmusicFragment extends Fragment implements OnItemClickListener, 
         filter.addAction(Constants.ACTION_PLAY);
         filter.addAction(Constants.ACTION_NEXT);
         filter.addAction(Constants.ACTION_PRV);
+        filter.addAction(Constants.DOWN_NOTIFY);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         filter.setPriority(800);
         receiver = new LocalMusicBroadcastReceiver();
@@ -163,15 +183,18 @@ public class ListmusicFragment extends Fragment implements OnItemClickListener, 
     private void setNotification() {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity());
-
-        Intent intent = new Intent(getActivity(), MainActivity.class);
+        Intent intent = new Intent();
+        intent.putExtra("position", position);
+        intent.setClass(getActivity(), MusicActivity.class);
         // 点击跳转到主界面
         PendingIntent intent_go = PendingIntent.getActivity(getActivity(), 5, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
         remoteViews.setOnClickPendingIntent(R.id.notice, intent_go);
 
         //设置取消通知按钮
-        PendingIntent intent_close = PendingIntent.getActivity(getActivity(), 0, intent,
+        Intent down = new Intent();
+        down.setAction(Constants.DOWN_NOTIFY);
+        PendingIntent intent_close = PendingIntent.getBroadcast(getActivity(), 7, down,
                 PendingIntent.FLAG_UPDATE_CURRENT);
         remoteViews.setOnClickPendingIntent(R.id.widget_close, intent_close);
 
@@ -242,6 +265,9 @@ public class ListmusicFragment extends Fragment implements OnItemClickListener, 
                         handler.sendMessage(message);
                     }
                 }
+            } else if (intent.getAction().equals(Constants.DOWN_NOTIFY)) {
+                Log.d("Test", "I go here now");
+                manager.cancelAll();
             } else if (intent.getAction().equals(Constants.ACTION_PLAY)) {
                 if (isFirst) {
                     isFirst = false;
@@ -280,8 +306,6 @@ public class ListmusicFragment extends Fragment implements OnItemClickListener, 
             } else if (intent.getAction().equals(Constants.ACTION_PAUSE)) {
                 Myapp.isPlay = false;
                 isFirst = false;
-
-
                 Message message = Message.obtain();
                 message.obj = mp3Infos.get(position);
                 handler.sendMessage(message);
@@ -346,8 +370,7 @@ public class ListmusicFragment extends Fragment implements OnItemClickListener, 
                     Intent broadcast = new Intent();
                     broadcast.setAction(Constants.ACTION_PAUSE);
                     getActivity().sendBroadcast(broadcast);
-                    btm_state
-                            .setImageResource(R.mipmap.player_btn_radio_play_normal);
+                    btm_state.setImageResource(R.mipmap.player_btn_radio_play_normal);
                 } else if (btm_state
                         .getDrawable()
                         .getConstantState()
@@ -357,8 +380,7 @@ public class ListmusicFragment extends Fragment implements OnItemClickListener, 
                     Intent broadcast = new Intent();
                     broadcast.setAction(Constants.ACTION_PLAY);
                     getActivity().sendBroadcast(broadcast);
-                    btm_state
-                            .setImageResource(R.mipmap.player_btn_radio_pause_normal);
+                    btm_state.setImageResource(R.mipmap.player_btn_radio_pause_normal);
                 }
                 break;
             case R.id.play_next:
