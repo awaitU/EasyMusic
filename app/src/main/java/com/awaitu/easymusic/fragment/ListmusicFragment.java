@@ -83,6 +83,10 @@ public class ListmusicFragment extends Fragment implements OnItemClickListener, 
         manager = (NotificationManager) getActivity().getSystemService(NOTIFICATION_SERVICE);
         remoteViews = new RemoteViews(getActivity().getPackageName(),
                 R.layout.customnotice);
+        //judge music play status to show music view tp user.
+        backToMusic();
+    }
+    public void backToMusic(){
         if (Myapp.isPlay) {
             Mp3Info info = infos.get(position);
             Bitmap bitmap = MediaUtil.getArtwork(getActivity(),

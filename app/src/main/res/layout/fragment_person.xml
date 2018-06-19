@@ -5,16 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/transport"
     android:orientation="vertical">
-
-    <!--<TextView-->
-        <!--android:layout_width="350dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_marginTop="35dp"-->
-        <!--android:text="@string/loginlogotext"-->
-        <!--android:textColor="@color/black"-->
-        <!--android:textSize="40sp"-->
-        <!--android:textStyle="normal" />-->
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="200dp"

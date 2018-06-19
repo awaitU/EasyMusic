@@ -12,8 +12,6 @@ import android.widget.Toast;
 
 import com.awaitu.easymusic.R;
 
-import cn.smssdk.SMSSDK;
-
 public class Personresetpwdsp extends Fragment implements View.OnClickListener{
     private EditText resetverificationcode;
     private Button resetpwd;
@@ -38,8 +36,6 @@ public class Personresetpwdsp extends Fragment implements View.OnClickListener{
         switch (view.getId()){
             case R.id.resetpwd:
                 if (!TextUtils.isEmpty(resetverificationcode.getText().toString())) {
-
-                    SMSSDK.submitVerificationCode("86", resetString, resetverificationcode.getText().toString());
                     Toast.makeText(getContext(), "验证成功", Toast.LENGTH_SHORT).show();
 
 

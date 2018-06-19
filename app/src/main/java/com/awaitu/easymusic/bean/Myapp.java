@@ -23,7 +23,6 @@ public class Myapp extends Application {
 
 	//state模3的值  0是随机播放   1是列表循环  2是单曲循环
 	public static int state =1;
-	
 	public static int position;
 
 

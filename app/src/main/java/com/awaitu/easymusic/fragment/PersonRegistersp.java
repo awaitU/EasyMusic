@@ -1,5 +1,7 @@
 package com.awaitu.easymusic.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -12,12 +14,13 @@ import android.widget.Toast;
 
 import com.awaitu.easymusic.R;
 
-import cn.smssdk.SMSSDK;
 
 public class PersonRegistersp extends Fragment implements View.OnClickListener {
     public String phString;
     private EditText inputverificationcode;
     private Button confirmregister;
+    private EditText inputpwd;
+    private EditText inputusername;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,6 +35,8 @@ public class PersonRegistersp extends Fragment implements View.OnClickListener {
 
     public void initView(View view) {
         inputverificationcode = (EditText) view.findViewById(R.id.inputverificationcode);
+        inputpwd = (EditText) view.findViewById(R.id.inputpwd);
+        inputusername = (EditText) view.findViewById(R.id.inputusername);
         confirmregister = (Button) view.findViewById(R.id.confirmregister);
     }
 
@@ -43,7 +48,15 @@ public class PersonRegistersp extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.confirmregister:
                 if (!TextUtils.isEmpty(inputverificationcode.getText().toString())) {
-                    SMSSDK.submitVerificationCode("86", phString, inputverificationcode.getText().toString());
+                    SharedPreferences sp = getActivity().getSharedPreferences("userAccount", Context.MODE_PRIVATE);
+                    String userPassword = inputpwd.getText().toString();
+                    String username = inputusername.getText().toString();
+                    if (TextUtils.isEmpty(username) | TextUtils.isEmpty(userPassword)) {
+                        Toast.makeText(getActivity(), "请您输入正确的信息", Toast.LENGTH_SHORT).show();
+                    } else {
+                        sp.edit().putString("userPassword", userPassword).apply();
+                        sp.edit().putString("userName", username).apply();
+                    }
 
                 } else {
                     Toast.makeText(getContext(), "验证码不能为空", Toast.LENGTH_SHORT).show();

@@ -9,7 +9,7 @@
     <string name="home_2">欢迎来到第二主页页面</string>
     <string name="home_3">欢迎来到第三主页页面</string>
     <string name="loginlogotext">登录E云</string>
-    <string name="edittextnumber">请输入手机号码</string>
+    <string name="edittextnumber">请输入用户名</string>
     <string name="edittextpassword">请输入密码</string>
     <string name="forgivepws">忘记密码?</string>
     <string name="register">新用户注册</string>
